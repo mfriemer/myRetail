@@ -26,6 +26,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile("org.springframework.boot:spring-boot-starter-data-rest")
 	compile('org.codehaus.groovy:groovy')
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
 }
