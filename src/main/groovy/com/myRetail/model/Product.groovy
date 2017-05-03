@@ -5,4 +5,10 @@ package com.myRetail.model
  */
 class Product {
 
+    private long id
+
+    ProductName productName
+
+    ProductPrice productPrice
+
 }

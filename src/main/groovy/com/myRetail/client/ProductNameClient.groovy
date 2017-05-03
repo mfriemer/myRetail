@@ -1,7 +1,6 @@
 package com.myRetail.client
 
 import com.myRetail.model.ProductName
-import com.myRetail.model.dto.Product
 import com.myRetail.model.dto.RedskyEntity
 import org.springframework.http.ResponseEntity
 import org.springframework.web.client.RestTemplate
@@ -17,14 +16,13 @@ class ProductNameClient {
         this.restTemplate = template
         this.resourceUri = resourceUri
     }
+
+    //TODO: handle 404 errors cleanly, throw 404 upstream
     public ProductName getProductName(Long id) {
         ResponseEntity<RedskyEntity> responseEntity = restTemplate.getForEntity(resourceUri + "/v2/pdp/tcin/{id}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics", RedskyEntity.class, id)
-        //Product product = restTemplate.getForObject(resourceUri + "/v2/pdp/tcin/{id}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics", Product.class, id)
-        String jackson = restTemplate.getForEntity(resourceUri + "/v2/pdp/tcin/{id}?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics", String.class, id).body
-        ProductName productName = new ProductName().with {
+       ProductName productName = new ProductName().with {
             productId = id
             productName = responseEntity.body.product.item.productDescription.title
-            //productName = product.item.productDescription.title
             it
         }
 
