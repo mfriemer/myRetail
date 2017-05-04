@@ -23,7 +23,9 @@ class ProductService {
         new Product().with {
             productName = productNameClient.getProductName(id).name
             // get price with latest effective date
-            productPrice = prices.sort { a,b -> -1 * (a.effectiveDate <=> b.effectiveDate) }.first()
+            if (prices) {
+                productPrice = prices.sort { a, b -> -1 * (a.effectiveDate <=> b.effectiveDate) }.first()
+            }
             it
         }
     }

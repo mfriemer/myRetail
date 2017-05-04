@@ -1,14 +1,12 @@
 package com.myRetail
 
 import com.myRetail.dao.ProductPriceRepository
-import com.myRetail.model.ProductPrice
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 
 @SpringBootApplication
-class MyRetailApplication implements CommandLineRunner {
+class MyRetailApplication  {
 	@Autowired
 	ProductPriceRepository priceRepository
 
@@ -16,15 +14,4 @@ class MyRetailApplication implements CommandLineRunner {
 		SpringApplication.run MyRetailApplication, args
 	}
 
-	@Override
-	void run(String... args) throws Exception {
-		//init product prices
-		ProductPrice price = new ProductPrice().with {
-			productId = 13860428
-			value = 19.99
-            currency = 'USD'
-			it
-		}
-		priceRepository.save(price)
-	}
 }

@@ -12,8 +12,8 @@ class ProductPriceDto {
 
     static ProductPriceDto fromProductPrice(ProductPrice productPrice) {
         new ProductPriceDto().with {
-            value = productPrice.value
-            currency = productPrice.currency
+            value = productPrice?.value
+            currency = productPrice?.currency
             it
         }
     }

@@ -17,6 +17,6 @@ java -jar <projectdir>/build/libs/myRetail-0.0.1-SNAPSHOT.jar
 ```
 Or by using Gradle bootrun task (from project root directory):
 ```groovy
-gradle bootrun
+gradle bootRun
 ```
 Product name service (RedSky) and MongoDB config data is kept in resources/application.yml file

@@ -31,4 +31,5 @@ dependencies {
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
+    testCompile (group: "cglib", name: "cglib-nodep", version: "2.2+")
 }

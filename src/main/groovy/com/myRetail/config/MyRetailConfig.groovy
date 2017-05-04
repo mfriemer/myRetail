@@ -18,17 +18,17 @@ class MyRetailConfig {
     private String resourceUri
 
     @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+    RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build()
     }
 
     @Bean
-    public ProductNameClient productNameClient() {
+    ProductNameClient productNameClient() {
         new ProductNameClient(restTemplate(), resourceUri)
     }
 
     @Bean
-    public ProductService productService() {
+    ProductService productService() {
         new ProductService()
     }
 }
