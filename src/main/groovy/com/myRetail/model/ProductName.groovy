@@ -5,5 +5,5 @@ package com.myRetail.model
  */
 class ProductName {
     Long productId
-    String productName
+    String name
 }

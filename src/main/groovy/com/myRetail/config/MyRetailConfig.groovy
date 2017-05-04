@@ -2,7 +2,6 @@ package com.myRetail.config
 
 import com.myRetail.client.ProductNameClient
 import com.myRetail.service.ProductService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.context.annotation.Bean

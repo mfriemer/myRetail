@@ -17,13 +17,11 @@ class MyRetailApplication implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
-        priceRepository.deleteAll()
-
+	void run(String... args) throws Exception {
 		//init product prices
 		ProductPrice price = new ProductPrice().with {
 			productId = 13860428
-			price = 19.99
+			value = 19.99
             currency = 'USD'
 			it
 		}

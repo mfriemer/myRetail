@@ -3,6 +3,7 @@ package com.myRetail.service
 import com.myRetail.client.ProductNameClient
 import com.myRetail.dao.ProductPriceRepository
 import com.myRetail.model.Product
+import com.myRetail.model.ProductPrice
 import org.springframework.beans.factory.annotation.Autowired
 
 /**
@@ -16,13 +17,18 @@ class ProductService {
     ProductNameClient productNameClient
 
     Product getProduct(Long id) {
-        // Get product name from resource
+        // Get product name from REST client, product price from noSQL store
+        List<ProductPrice> prices = productPriceRepository.findAllByProductId(id)
 
-        // Get product price from noSQL store
         new Product().with {
-            productName = productNameClient.getProductName(id)
-            productPrice = productPriceRepository.findByProductId(id)
+            productName = productNameClient.getProductName(id).name
+            // get price with latest effective date
+            productPrice = prices.sort { a,b -> -1 * (a.effectiveDate <=> b.effectiveDate) }.first()
             it
         }
+    }
+
+    void saveProductPrice(ProductPrice productPrice) {
+        productPriceRepository.save(productPrice)
     }
 }

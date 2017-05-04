@@ -11,7 +11,9 @@ class ProductPrice {
 
     Long productId
 
-    Number price
+    Number value
 
     String currency
+
+    Date effectiveDate = new Date()
 }

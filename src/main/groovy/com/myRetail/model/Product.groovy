@@ -7,7 +7,7 @@ class Product {
 
     private long id
 
-    ProductName productName
+    String productName
 
     ProductPrice productPrice
 
