@@ -5,11 +5,13 @@ import com.myRetail.model.dto.ProductDto
 import com.myRetail.service.ProductService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.client.HttpClientErrorException
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.PUT
@@ -24,8 +26,13 @@ class ProductController {
     private ProductService productService
 
     @RequestMapping(value = "/{id}", method = GET, produces = "application/json")
-    ProductDto getProduct(@PathVariable( "id" ) Long id) {
-        return ProductDto.fromProduct(productService.getProduct(id))
+    ResponseEntity<ProductDto> getProduct(@PathVariable( "id" ) Long id) {
+        try {
+            return new ResponseEntity(ProductDto.fromProduct(productService.getProduct(id)), HttpStatus.OK)
+        }
+        catch (HttpClientErrorException e) {
+            return new ResponseEntity(e.statusCode)
+        }
     }
 
     @RequestMapping(value = "/{id}", method = PUT)
